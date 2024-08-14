@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="robots" content="noindex">
+    <title>かきとりんくトップ</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@700&display=swap" rel="stylesheet">
+    <style>
+        .title {
+            font-family: 'Darumadrop One', cursive;
+            font-size: 10vmax;
+            text-align: center;
+        }
+
+        .s-title {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 5vmin;
+            text-align: center;
+        }
+
+        form {
+            margin-left: auto;
+            margin-right: auto;
+            width: 650px;
+        }
+
+        .sen {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 4vmin;
+            margin-top: 4vmin;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            font-size: 3vmin;
+        }
+
+        input[type="radio"] {
+            margin: 0;
+            width: 3vmin;
+            height: 3vmin;
+        }
+
+        label {
+            font-size: 3vmin;
+        }
+
+        textarea {
+            width: 100%;
+            font-size: 3vmin;
+        }
+
+        button {
+            display: block;
+            margin: auto;
+            margin-top: 4vmin;
+            margin-bottom: 8vmin;
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            font-size: 4vmin;
+            border-radius: 2vmin;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="title">かきとりんく</div>
+    <div class="s-title">作成フォーム</div>
+    <form name="userForm">
+        <div class="sen">タイトル：</div>
+        <input type="text" id="title" placeholder="タイトルを入力" required>
+
+        <div class="sen">説明：</div>
+        <input type="text" id="explanation" placeholder="ない場合は入力しなくても構いません">
+
+        <div class="sen">種類：</div>
+        <label><input type="radio" name="type" value="漢字書き取り" required>漢字書き取り</label><br>
+        <label><input type="radio" name="type" value="英単語書き取り">英単語書き取り</label><br>
+        <label><input type="radio" name="type" value="一問一答">一問一答</label>
+
+        <div class="sen">データ：</div>
+        <textarea rows="15"
+            id="data" required>空白行を挟みながら質問と答えを交互に入力してください。質問・答えは複数行でも構いません。&NewLine;ー入力例(種類：漢字書き取り)ー&NewLine;中華めん&NewLine;&NewLine;麺&NewLine;&NewLine;もち&NewLine;&NewLine;餅&NewLine;&NewLine;あご&NewLine;&NewLine;顎&NewLine;本説明文は削除してから入力してください。</textarea>
+        </div>
+        <button type="submit" onclick="create()">作成</button>
+    </form>
+    <script>
+        function create() {
+            var title = document.getElementById('title').value;
+            localStorage.setItem('title', title);
+            var explanation = document.getElementById('explanation').value;
+            localStorage.setItem('explanation', explanation);
+            var type = document.forms.userForm.type.value;
+            localStorage.setItem('type', type);
+            var data = document.getElementById('data').value;
+            localStorage.setItem('data', data);
+            open('/index.html');
+        }
+    </script>
+</body>
+
+</html>
